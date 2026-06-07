@@ -31,6 +31,16 @@ pub struct PlayStats {
     pub wins: i64,
     pub vs: i64,
     pub sync: i64,
+    pub first: Option<ProfilePlayMarker>,
+    pub latest: Option<ProfilePlayMarker>,
+}
+
+#[derive(Debug, Deserialize)]
+pub struct ProfilePlayMarker {
+    pub id: i64,
+    pub date: String,
+    pub date_unix: i64,
+    pub api_route: String,
 }
 
 #[derive(Debug, Deserialize)]
@@ -52,10 +62,12 @@ pub struct TrackInfo {
 #[derive(Debug, Deserialize)]
 pub struct LocalizedName {
     pub en: String,
+    pub jp: Option<String>,
 }
 
 #[derive(Debug, Deserialize)]
 pub struct DifficultyLevel {
+    pub key: Option<i64>,
     pub value: String,
     pub label: String,
 }
@@ -93,6 +105,8 @@ pub struct Play {
     pub is_all_perfect: bool,
     pub is_track_skip: bool,
     pub difficulty_level: DifficultyLevel,
+    pub play_date: Option<String>,
+    pub play_date_unix: Option<i64>,
     pub song: TrackInfo,
     pub player: Profile,
 }
