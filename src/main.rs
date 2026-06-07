@@ -208,12 +208,12 @@ fn print_combined(info_lines: &[String], logo_lines: &[String], logo_size: i32) 
     let blank_logo = " ".repeat((logo_size * 2).max(0) as usize);
 
     for index in 0..max_length {
-        let logo = if index + 1 < logo_lines.len() {
+        let logo = if index < logo_lines.len() {
             logo_lines[index].as_str()
         } else {
             blank_logo.as_str()
         };
-        let info = if index + 1 < info_lines.len() {
+        let info = if index < info_lines.len() {
             info_lines[index].as_str()
         } else {
             ""
