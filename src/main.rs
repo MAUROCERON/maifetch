@@ -1,8 +1,6 @@
-mod maitea;
-
 use clap::Parser;
 use image::{imageops::FilterType, GenericImageView};
-use maitea::{accent, difficulty_string, rank_string, ApiClient, Play, Profile};
+use maifetch::maitea::{accent, difficulty_string, rank_string, ApiClient, Play, Profile};
 use serde::{Deserialize, Serialize};
 use std::error::Error;
 use std::fs::File;
@@ -62,7 +60,7 @@ fn run() -> Result<(), Box<dyn Error>> {
     let plays = client.get_plays()?;
     output(
         &client,
-        &plays,
+        plays.current_page(),
         &profiles[0],
         config.logo_size,
         config.score_count,
